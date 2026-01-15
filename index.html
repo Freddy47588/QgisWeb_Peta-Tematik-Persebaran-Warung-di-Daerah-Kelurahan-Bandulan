@@ -53,20 +53,28 @@
         <script>
         var highlightLayer;
         function highlightFeature(e) {
-            highlightLayer = e.target;
+    var layer = e.target;
 
-            if (e.target.feature.geometry.type === 'LineString' || e.target.feature.geometry.type === 'MultiLineString') {
-              highlightLayer.setStyle({
-                color: 'rgba(255, 127, 0, 1.00)',
-              });
-            } else {
-              highlightLayer.setStyle({
-                fillColor: 'rgba(255, 127, 0, 1.00)',
-                fillOpacity: 1
-              });
-            }
-            highlightLayer.openPopup();
-        }
+    if (
+        e.target.feature.geometry.type === 'LineString' ||
+        e.target.feature.geometry.type === 'MultiLineString'
+    ) {
+        layer.setStyle({
+            color: '#7c3aed',
+            weight: 4
+        });
+    } else {
+        layer.setStyle({
+            fillColor: '#7c3aed',
+            fillOpacity: 0.55,
+            color: '#ffffff',
+            weight: 2
+        });
+    }
+
+    layer.openPopup();
+}
+
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
         }).fitBounds([[-8.033614743010103,112.56178358243018],[-7.947517100896502,112.73974755289616]]);
